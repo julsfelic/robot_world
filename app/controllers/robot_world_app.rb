@@ -18,6 +18,11 @@ class RobotWorldApp < Sinatra::Base
     redirect '/robots'
   end
 
+  get '/robots/:id' do |id|
+    @robot = robot_manager.find(id.to_i)
+    erb :show
+  end
+
   def robot_manager
     database = YAML::Store.new('db/robot_manager')
     @robot_manager ||= RobotManager.new(database)

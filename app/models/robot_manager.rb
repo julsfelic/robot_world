@@ -35,4 +35,12 @@ class RobotManager
   def all
     raw_robots.map { |raw_robot| Robot.new(raw_robot) }
   end
+
+  def raw_robot(id)
+    raw_robots.find { |raw_robot| raw_robot["id"] == id }
+  end
+
+  def find(id)
+    Robot.new(raw_robot(id))
+  end
 end
