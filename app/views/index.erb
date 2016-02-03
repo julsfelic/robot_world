@@ -1,0 +1,12 @@
+<h1>Robots</h1>
+
+<ul>
+  <% @robots.each do |robot| %>
+    <li>
+      <h2>
+        <a href="/robots/<%= robot.id %>"><%= robot.name %></a>
+      </h2>
+      <img src="https://robohash.org/<%= robot.avatar %>" alt="<%= robot.name %>">
+    </li>
+  <% end %>
+</ul>
