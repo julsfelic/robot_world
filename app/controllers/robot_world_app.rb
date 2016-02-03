@@ -5,7 +5,6 @@ class RobotWorldApp < Sinatra::Base
   set :method_override, true
 
   get '/robots' do
-    # grab robots from RobotManager model
     @robots = robot_manager.all
     erb :index
   end
@@ -34,6 +33,11 @@ class RobotWorldApp < Sinatra::Base
     robot_manager.update(params[:robot], id)
     @robot = robot_manager.find(id)
     redirect "/robots/#{@robot.id}"
+  end
+
+  delete '/robots/:id' do |id|
+    robot_manager.delete(id.to_i)
+    redirect '/robots'
   end
 
   def robot_manager
