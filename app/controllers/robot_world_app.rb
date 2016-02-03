@@ -6,4 +6,8 @@ class RobotWorldApp < Sinatra::Base
     @robots = ["Robot 1", "Robot 2", "Robot 3"]
     erb :index
   end
+
+  get '/robots/new' do
+    erb :new
+  end
 end
