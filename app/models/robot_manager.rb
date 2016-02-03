@@ -43,4 +43,11 @@ class RobotManager
   def find(id)
     Robot.new(raw_robot(id))
   end
+
+  def update(data, id)
+    database.transaction do
+      robot = database['robots'].find { |robot| robot["id"] == id }
+      robot.merge!(data)
+    end
+  end
 end
