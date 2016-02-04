@@ -4,7 +4,7 @@ class UserCanEditARobotTest < Minitest::Test
   include TestHelpers
   include Capybara::DSL
 
-  def test_existing_task_is_updated_with_new_information
+  def test_existing_robot_is_updated_with_new_information
     create_robots(1)
 
     visit '/robots/1/edit'
