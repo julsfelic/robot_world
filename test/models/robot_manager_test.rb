@@ -17,4 +17,15 @@ class RobotManagerTest < Minitest::Test
     assert_equal "2#{robot.id}00-01-22",     robot.date_hired
     assert_equal "Software Dev #{robot.id}", robot.department
   end
+
+  def test_can_get_all_robots
+    create_robots(3)
+
+    assert_equal 3, robot_manager.all.count
+
+    robot_manager.all.each do |robot|
+      assert_instance_of Robot, robot
+      assert_equal "Robot #{robot.id}", robot.name
+    end
+  end
 end

@@ -1,9 +1,7 @@
 require 'yaml/store'
 
 class RobotWorldApp < Sinatra::Base
-  set :root, File.expand_path("..", __dir__)
-  set :method_override, true
-
+  
   get '/robots' do
     @robots = robot_manager.all
     erb :index
