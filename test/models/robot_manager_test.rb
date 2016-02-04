@@ -3,7 +3,7 @@ require_relative '../test_helper'
 class RobotManagerTest < Minitest::Test
   include TestHelpers
 
-  def test_can_create_a_robot
+  def test_it_can_create_a_robot
     create_robots(1)
 
     robot = robot_manager.all.last
@@ -18,7 +18,7 @@ class RobotManagerTest < Minitest::Test
     assert_equal "Software Dev #{robot.id}", robot.department
   end
 
-  def test_can_get_all_robots
+  def test_it_finds_all_robots
     create_robots(3)
 
     assert_equal 3, robot_manager.all.count
@@ -26,6 +26,19 @@ class RobotManagerTest < Minitest::Test
     robot_manager.all.each do |robot|
       assert_instance_of Robot, robot
       assert_equal "Robot #{robot.id}", robot.name
+    end
+  end
+
+  def test_it_finds_a_specific_robot
+    create_robots(3)
+
+    ids = robot_manager.all.map { |robot| robot.id }
+
+    ids.each_with_index do |id, index|
+      robot = robot_manager.find(id)
+      assert_equal id, robot.id
+      assert_equal "Robot #{index + 1}", robot.name
+      assert_equal "Chicago #{index + 1}", robot.city
     end
   end
 end
