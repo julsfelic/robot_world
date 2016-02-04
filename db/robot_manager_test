@@ -1,0 +1,12 @@
+---
+robots:
+- id: 1
+  name: Robot 1
+  city: Chicago 1
+  state: Illinois 1
+  avatar: 23j41
+  birthday: '2011-03-18'
+  date_hired: '2100-01-22'
+  department: Software Dev 1
+total: 0
+robot: []

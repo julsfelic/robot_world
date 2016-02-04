@@ -1,4 +1,4 @@
-require 'test_helper'
+require_relative '../test_helper'
 
 class RobotTest < Minitest::Test
   def test_robot_attributes_assigned_correctly
