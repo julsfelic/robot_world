@@ -2,18 +2,18 @@
 robots:
 - id: 2
   name: Megatron
-  city: Detroit
+  city: Grand Rapids
   state: Michigan
   avatar: jfndk381
   birthday: '1967-05-04'
   date_hired: '2001-02-03'
   department: Football
-- id: 3
-  name: Megaladeth
-  city: San Antonio
-  state: Texas
-  avatar: jfkdaj38
-  birthday: '1990-12-18'
-  date_hired: '2012-12-18'
-  department: Piro
-total: 3
+- id: 4
+  name: R2D2
+  city: A galaxy far far away...
+  state: "???"
+  avatar: r2d2
+  birthday: '3013-02-24'
+  date_hired: '3056-04-23'
+  department: Electronics
+total: 4
