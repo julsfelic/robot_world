@@ -51,4 +51,16 @@ class RobotManagerTest < Minitest::Test
 
     assert_equal "Otilio", updated_robot.name
   end
+
+  def test_it_deletes_a_robot_record
+    create_robots(3)
+
+    initial_count = robot_manager.all.count
+
+    robot_manager.delete(2)
+
+    final_count = robot_manager.all.count
+
+    assert_equal 1, (initial_count - final_count)
+  end
 end
