@@ -9,7 +9,7 @@ class UserCanCreateARobotTest < Minitest::Test
     click_link 'Add Robot'
 
     assert_equal '/robots/new', current_path
-
+    
     fill_in "robot[name]", with: "Julian"
     fill_in "robot[city]", with: "Chicago"
     fill_in "robot[state]", with: "Illinois"
