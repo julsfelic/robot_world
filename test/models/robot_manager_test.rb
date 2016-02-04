@@ -41,4 +41,14 @@ class RobotManagerTest < Minitest::Test
       assert_equal "Chicago #{index + 1}", robot.city
     end
   end
+
+  def test_it_updates_a_robot_record
+    create_robots(3)
+
+    robot_manager.update({ "name" => "Otilio" }, 2)
+
+    updated_robot = robot_manager.find(2)
+
+    assert_equal "Otilio", updated_robot.name
+  end
 end
