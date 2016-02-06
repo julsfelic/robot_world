@@ -9,6 +9,8 @@ require 'tilt/erb'
 Capybara.app = RobotWorldApp
 Capybara.save_and_open_page_path = "tmp/capybara"
 
+DatabaseCleaner[:sequel, {:connection => Sequel.sqlite("db/robot_world_test.sqlite3")}].strategy = :truncation
+
 module TestHelpers
   def create_robots(num)
     num.times do |i|
@@ -24,14 +26,23 @@ module TestHelpers
     end
   end
 
+  def find_last_robot
+    robot_manager.all.last
+  end
+
+  def setup
+    DatabaseCleaner.start
+    super
+  end
+
 
   def teardown
-    robot_manager.delete_all
+    DatabaseCleaner.clean
     super
   end
 
   def robot_manager
-    database = YAML::Store.new('db/robot_manager_test')
+    database = Sequel.sqlite('db/robot_world_test.sqlite3')
     @robot_manager ||= RobotManager.new(database)
   end
 end

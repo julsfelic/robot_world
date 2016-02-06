@@ -1,5 +1,3 @@
-require 'yaml/store'
-
 class RobotWorldApp < Sinatra::Base
 
   get '/robots' do
@@ -40,9 +38,9 @@ class RobotWorldApp < Sinatra::Base
 
   def robot_manager
     if ENV['RACK_ENV'] == 'test'
-      database = YAML::Store.new('db/robot_manager_test')
+      database = Sequel.sqlite('db/robot_world_test.sqlite3')
     else
-      database = YAML::Store.new('db/robot_manager')
+      database = Sequel.sqlite('db/robot_world_development.sqlite3')
     end
     @robot_manager ||= RobotManager.new(database)
   end

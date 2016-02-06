@@ -9,13 +9,13 @@ class RobotManagerTest < Minitest::Test
     robot = robot_manager.all.last
 
     assert robot.id
-    assert_equal "Robot #{robot.id}",        robot.name
-    assert_equal "Chicago #{robot.id}",      robot.city
-    assert_equal "Illinois #{robot.id}",     robot.state
-    assert_equal "23j4#{robot.id}",          robot.avatar
-    assert_equal "201#{robot.id}-03-18",     robot.birthday
-    assert_equal "2#{robot.id}00-01-22",     robot.date_hired
-    assert_equal "Software Dev #{robot.id}", robot.department
+    assert_equal "Robot 1",        robot.name
+    assert_equal "Chicago 1",      robot.city
+    assert_equal "Illinois 1",     robot.state
+    assert_equal "23j41",          robot.avatar
+    assert_equal "2011-03-18",     robot.birthday
+    assert_equal "2100-01-22",     robot.date_hired
+    assert_equal "Software Dev 1", robot.department
   end
 
   def test_it_finds_all_robots
@@ -23,9 +23,9 @@ class RobotManagerTest < Minitest::Test
 
     assert_equal 3, robot_manager.all.count
 
-    robot_manager.all.each do |robot|
+    robot_manager.all.each_with_index do |robot, index|
       assert_instance_of Robot, robot
-      assert_equal "Robot #{robot.id}", robot.name
+      assert_equal "Robot #{index + 1}", robot.name
     end
   end
 
@@ -33,7 +33,6 @@ class RobotManagerTest < Minitest::Test
     create_robots(3)
 
     ids = robot_manager.all.map { |robot| robot.id }
-
     ids.each_with_index do |id, index|
       robot = robot_manager.find(id)
       assert_equal id, robot.id
@@ -44,20 +43,22 @@ class RobotManagerTest < Minitest::Test
 
   def test_it_updates_a_robot_record
     create_robots(3)
+    robot_id = find_last_robot.id
 
-    robot_manager.update({ "name" => "Otilio" }, 2)
+    robot_manager.update({ "name" => "Otilio" }, robot_id)
 
-    updated_robot = robot_manager.find(2)
+    updated_robot = robot_manager.find(robot_id)
 
     assert_equal "Otilio", updated_robot.name
   end
 
   def test_it_deletes_a_robot_record
     create_robots(3)
+    robot_id = find_last_robot.id
 
     initial_count = robot_manager.all.count
 
-    robot_manager.delete(2)
+    robot_manager.delete(robot_id)
 
     final_count = robot_manager.all.count
 

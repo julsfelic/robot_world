@@ -8,6 +8,7 @@ class UserCanDeleteARobotTest < Minitest::Test
     create_robots(1)
 
     visit '/robots'
+
     assert page.has_content? 'Robot 1'
     click_link 'Robot 1'
 

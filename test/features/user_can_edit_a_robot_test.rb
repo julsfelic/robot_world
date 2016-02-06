@@ -6,15 +6,16 @@ class UserCanEditARobotTest < Minitest::Test
 
   def test_existing_robot_is_updated_with_new_information
     create_robots(1)
+    robot_id = find_last_robot.id
 
-    visit '/robots/1/edit'
+    visit "/robots/#{robot_id}/edit"
 
     fill_in 'robot[name]', with: 'Julian'
     fill_in 'robot[city]', with: 'New York City'
     fill_in 'robot[state]', with: 'New York'
     click_button 'Edit Robot'
 
-    assert_equal '/robots/1', current_path
+    assert_equal "/robots/#{robot_id}", current_path
     within('h1') do
       assert page.has_content? 'Julian'
     end
